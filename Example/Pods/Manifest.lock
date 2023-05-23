@@ -1,0 +1,16 @@
+PODS:
+  - MediaEditorManager (1.0.0)
+
+DEPENDENCIES:
+  - MediaEditorManager (from `../`)
+
+EXTERNAL SOURCES:
+  MediaEditorManager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MediaEditorManager: 6dab6821d6e5a6ea82ba5a7cf345fc54089d7e98
+
+PODFILE CHECKSUM: 456f132f839f611ccbda4011f77549380237d7f5
+
+COCOAPODS: 1.12.0
