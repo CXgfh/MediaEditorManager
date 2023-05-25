@@ -13,8 +13,8 @@ extension MediaEditorManager {
     public func tailoringVideo(at asset: AVAsset,
                                tailoring: MediaEditorTailoring,
                                _ complete: @escaping (_ result: MediaEditorResult)->()) {
-        let start = CMTimeMakeWithSeconds(tailoring.star*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
-        let end = CMTimeMakeWithSeconds(tailoring.end*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
+        let start = CMTimeMakeWithSeconds(Double(tailoring.star)*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
+        let end = CMTimeMakeWithSeconds(Double(tailoring.end)*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
         let range = CMTimeRange(start: start, end: end)
         
         tailoringVideo(at: asset, range, complete)

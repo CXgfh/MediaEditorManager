@@ -21,14 +21,14 @@ extension MediaDataEditorManager {
         
         var range: CMTimeRange
         if let tailoring = tailoring {
-            let start = CMTimeMakeWithSeconds(tailoring.star*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
-            let end = CMTimeMakeWithSeconds(tailoring.end*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
+            let start = CMTimeMakeWithSeconds(Double(tailoring.star)*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
+            let end = CMTimeMakeWithSeconds(Double(tailoring.end)*asset.duration.seconds, preferredTimescale: asset.duration.timescale)
             range = CMTimeRange(start: start, end: end)
         } else {
             range = CMTimeRange(start: .zero, duration: asset.duration)
         }
         
-        edit(at: asset, range: range, angle: angle, compression: compression, waterMakers: waterMakers, complete: complete)
+        edit(at: asset, range: range, angle: angle, compression: compression, waterMakers: waterMakers, progress: progress, complete: complete)
     }
     
     public func edit(at asset: AVAsset,
@@ -158,6 +158,7 @@ extension MediaDataEditorManager {
             } else {
                 input.markAsFinished()
                 if input == videoInput {
+                    progress?(1)
                     writeVideoCompleted = true
                 } else {
                     writeAudioCompleted = true
@@ -176,8 +177,10 @@ extension MediaDataEditorManager {
                 self.writer.cancelWriting()
                 complete(.failure(MediaEditorError.failedReadingOrWriting))
             } else {
-                writer.finishWriting {
-                    complete(.success(nil))
+                if writeAudioCompleted, writeVideoCompleted {
+                    writer.finishWriting {
+                        complete(.success(nil))
+                    }
                 }
             }
         }

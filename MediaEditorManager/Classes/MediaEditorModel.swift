@@ -38,10 +38,10 @@ public struct RotationMessage {
 }
 
 public struct MediaEditorTailoring {
-    var star: Float64
-    var end: Float64
+    var star: Float
+    var end: Float
     
-    public init(star: Float64, end: Float64) {
+    public init(star: Float, end: Float) {
         self.star = star
         self.end = end
     }
@@ -49,10 +49,10 @@ public struct MediaEditorTailoring {
 
 public struct MediaEditorCompression {
     var audioMix: AVAudioMix?
-    var videoSettings: [String: Any]?
+    var videoSettings: [String: Any]
     var audioSettings: [String: Any]?
     
-    public init(audioMix: AVAudioMix? = nil, videoSettings: [String : Any]? = nil, audioSettings: [String : Any]? = nil) {
+    public init(audioMix: AVAudioMix? = nil, videoSettings: [String : Any], audioSettings: [String : Any]? = nil) {
         self.audioMix = audioMix
         self.videoSettings = videoSettings
         self.audioSettings = audioSettings

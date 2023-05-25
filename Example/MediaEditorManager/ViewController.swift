@@ -76,6 +76,7 @@ class ViewController: UIViewController {
         }
         
         //视频压缩
+        //视频设置不能为空
         let video = [
             AVVideoCodecKey: AVVideoCodecType.h264,
             AVVideoWidthKey: 1080,
